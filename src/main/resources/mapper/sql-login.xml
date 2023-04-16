@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pethotel.mapper.LoginMapper">
+	<select id="login" parameterType="pethotel.dto.LoginDto" resultType="pethotel.dto.UserDto">
+		select user_id, user_password, user_name, user_email,user_phonenumber,user_company
+		  from users
+		 where user_id = #{userId} and user_password = #{userPassword}
+	</select>
+	<!-- 회원가입화면-->
+	<insert id ="regist" parameterType="pethotel.dto.UserDto">
+		insert into users(user_id, user_password, user_name, user_email,user_phonenumber,user_company)
+		values (#{userId},#{userPassword},
+		#{userName},#{userEmail},#{userPhonenumber},#{userCompany})
+	</insert>
+	<select id="selectUser" parameterType="pethotel.dto.UserDto" resultType="pethotel.dto.UserDto">
+		select user_id
+		  from users
+		 where user_id = #{userId}
+	</select>
+</mapper>
